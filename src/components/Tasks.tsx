@@ -73,12 +73,9 @@ function Tasks() {
     setTasks(editedTasks)
   }
 
-  
-   const CompletedTasks = tasks.filter(task => {
-      return task.isComplete === true
-   })
-
-
+  const CompletedTasks = tasks.filter(task => {
+    return task.isComplete === true
+  })
 
   const isTaskEmpty = tasks.length === 0
   const isNewTaskEmpty = newTask.title === ''
@@ -97,7 +94,10 @@ function Tasks() {
           Tarefas criadas<span>{tasks.length}</span>
         </strong>
         <strong className={styles.completedTasks}>
-          Concluídas <span>{CompletedTasks.length} de {tasks.length}</span>
+          Concluídas{' '}
+          <span>
+            {CompletedTasks.length} de {tasks.length}
+          </span>
         </strong>
       </div>
       <div className={styles.toDoList}>

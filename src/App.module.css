@@ -1,18 +1,17 @@
 .wrapper {
-   max-width: 61.33rem;
+  max-width: 61.33rem;
 
-   margin: auto;
-   margin-top: calc(0px - 1.68rem);
+  margin: auto;
+  margin-top: calc(0px - 1.68rem);
 
-   padding: 0 0.8rem;
+  padding: 0 0.8rem;
 }
 
-
 @media (max-width: 768px) {
-   html {
-      font-size: 87.5%;
-   }
-   .wrapper {
-      grid-template-columns: 1fr;
-   }
+  html {
+    font-size: 87.5%;
+  }
+  .wrapper {
+    grid-template-columns: 1fr;
+  }
 }
