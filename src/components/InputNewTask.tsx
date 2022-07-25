@@ -1,14 +1,17 @@
 import { PlusCircle } from 'phosphor-react';
-import { ChangeEvent, FormEvent } from 'react';
+import { ChangeEvent, FormEvent, InvalidEvent } from 'react';
 
 import styles from './InputNewTask.module.css';
 
 interface PropsNewTask {
    createNewTask: (event: FormEvent) => void;
    onChangeTask: (event: ChangeEvent<HTMLInputElement>) => void;
+   onInvalid: (event: InvalidEvent<HTMLInputElement>) => void;
+   isNewTaskEmpty: boolean
+   emptyTitle: string
 }
 
-function InputNewTask({ onChangeTask, createNewTask }: PropsNewTask) {
+function InputNewTask({ onChangeTask, createNewTask, onInvalid, isNewTaskEmpty, emptyTitle}: PropsNewTask) {
    return (
       <form className={styles.containerNewTask} onSubmit={createNewTask}>
          <input
@@ -16,8 +19,12 @@ function InputNewTask({ onChangeTask, createNewTask }: PropsNewTask) {
             className={styles.inputNewTask}
             placeholder="Adicione uma nova tarefa"
             onChange={onChangeTask}
+            onInvalid={onInvalid}
+            value={emptyTitle}
+            required
+            
          />
-         <button type="submit" className={styles.buttonNewTask}>
+         <button type="submit" disabled={isNewTaskEmpty} className={styles.buttonNewTask} >
             Criar <PlusCircle size={16}/>
          </button>
       </form>

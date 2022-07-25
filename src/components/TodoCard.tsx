@@ -1,20 +1,34 @@
 import { Trash } from 'phosphor-react';
+import { PropsTask } from './Tasks';
+
 import styles from './TodoCard.module.css';
 
 interface PropsTodoCard {
-   content: string;
-   onDeleteTask: (content: string) => void;
+   task: PropsTask;
+   onDeleteTask: (id: string) => void;
+   onChangeIsComplete: (id: string) => void;
 }
-function TodoCard({ content, onDeleteTask }: PropsTodoCard) {
+
+function TodoCard({ task, onDeleteTask, onChangeIsComplete }: PropsTodoCard) {
    function handleDeleteTask() {
-      onDeleteTask(content);
+      onDeleteTask(task.id);
    }
+
+   function handleCheckedTask() {
+      onChangeIsComplete(task.id);
+   }
+
 
    return (
       <div className={styles.container}>
          <label>
-            <input type="checkbox" name="checkbox" />
-            <span>{content}</span>
+            <input
+               type="checkbox"
+               name="checkbox"
+               onChange={handleCheckedTask}
+               checked={task.isComplete}
+            />
+            <span>{task.title}</span>
          </label>
 
          <button onClick={handleDeleteTask} className={styles.buttonTask}>
